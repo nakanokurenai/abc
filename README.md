@@ -1,2 +1,6 @@
-# abc
-AtCoder Beginners Contest 参加記録
+ac
+===
+
+atcoder 問いたやつ
+
+標準入力から流して実行してくれるシェル関数が便利
