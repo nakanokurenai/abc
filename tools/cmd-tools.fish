@@ -2,7 +2,8 @@
 
 function run
     set name (string join '-' $argv)
-    gcc -Wall -g -O0 $name.c -o $name.o && cat $name.in | ./$name.o
+    gcc -Wall -g -O0 $name.c -o $name.o
+    time cat $name.in | ./$name.o | cat > $name.stdout
 end
 
 function ma

@@ -1,49 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// TLE
-
-unsigned long kyu(unsigned long n) {
-  unsigned long r = n;
-  if (r == 0) return r;
-  for (unsigned long i = n-1; i != 0; i--) {
-    r = r + i;
-  }
-  return r;
-}
-
 int main() {
-  // your code here...
-  unsigned long n;
-  scanf("%lu", &n);
+  int n; scanf("%d", &n);
+  int c[n];
+  for (int i = 0; i<n; i++) { c[i] = 0; }
+  int a[n];
+  for (int i = 0; i < n; i++) { scanf("%d", &a[i]); c[a[i]-1] += 1; }
 
-  unsigned long a[n];
-  unsigned long cnt[n];
-
-  for (unsigned long i = 0; i < n; i++) {
-    cnt[i] = 0;
-  }
-
-  for (unsigned long i = 0; i < n; i++) {
-    scanf("%lu", &a[i]);
-    cnt[a[i]] += 1;
-  }
-
-  int count;
-  for (unsigned long k = 0; k < n; k++) {
-    unsigned long kv = a[k];
-    count = 0;
-    for (unsigned long j = 0; j < n; j++) {
-      if (cnt[j] > 0) {
-        if (kv != j) {
-          count += kyu(cnt[j] - 1);
-        } else if (cnt[j] > 1) {
-          count += kyu(cnt[j] - 2);
-        }
-      }
+  long all = 0;
+  long comb[n];
+  for (int i = 0; i < n; i++) {
+    comb[i] = 0;
+    if (c[i] > 0) {
+      comb[i] = (long)(c[i]) * (long)(c[i]-1) / 2;
+      all += comb[i];
     }
-    printf("%d\n", count);
   }
 
+  for (int i = 0; i < n; i++) {
+    printf("%ld\n", all - c[a[i]-1]+1);
+  }
   return 0;
 }
